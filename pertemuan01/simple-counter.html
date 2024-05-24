@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Latihan</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+      .counter-container {
+        display: flex;
+        /* justify-content: center; */
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 20px;
+      }
+      .reset-container {
+        display: flex;
+        /* justify-content: center; */
+      }
+      button {
+        padding: 10px 20px;
+        font-size: 20px;
+      }
+      h1 {
+        margin: 0;
+        font-size: 2em;
+      }
+      .reset-button {
+        padding: 10px 20px;
+        font-size: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app"></div>
+
+    <script type="text/babel">
+      const container = document.getElementById("app");
+      const element = ReactDOM.createRoot(container);
+      function MyHomePage() {
+        const [reset, setResets] = React.useState(0);
+
+        function SetReset() {
+          setResets(0);
+        }
+
+        function SetPlus() {
+          setResets(reset + 1);
+        }
+
+        function SetMinus() {
+          setResets(reset - 1);
+        }
+
+        return (
+          <>
+            <div className="counter-container">
+              <button onClick={SetMinus}>-</button>
+              <h1>{reset}</h1>
+              <button onClick={SetPlus}>+</button>
+            </div>
+            <div className="reset-container">
+              <button className="reset-button" onClick={SetReset}>
+                Reset
+              </button>
+            </div>
+          </>
+        );
+      }
+
+      element.render(<MyHomePage />);
+    </script>
+  </body>
+</html>

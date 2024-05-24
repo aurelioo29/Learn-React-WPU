@@ -1,0 +1,60 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const container = document.getElementById("root");
+      const element = ReactDOM.createRoot(container);
+
+      // NOTE = multiple elment
+      // element.render(
+      //   <>
+      //     <h1>Belajar React WPU 🛹</h1>
+      //     <p
+      //       onClick={(e) => {
+      //         alert("oke");
+      //       }}
+      //     >
+      //       Pemula yang ingin belajar menjadi pro react
+      //     </p>
+      //   </>
+      // );
+
+      // NOTE = component (function) reusable
+      function Header({ name }) {
+        return <h1>Belajar React {name ? name : "None"} 🛹</h1>;
+      }
+      function HomePage() {
+        const students = ["Isak", "Erling", "Martin"];
+        const [likes, setLikes] = React.useState(0);
+
+        function HandleClick() {
+          setLikes(likes + 1);
+        }
+
+        return (
+          <>
+            <Header />
+            <Header name="AVIP" />
+            <ul>
+              {students.map((student) => (
+                <li key={student}>{student}</li>
+              ))}
+            </ul>
+            <button onClick={HandleClick}>Likes ({likes})</button>
+          </>
+        );
+      }
+      element.render(<HomePage />);
+    </script>
+  </body>
+</html>

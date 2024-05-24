@@ -1,0 +1,66 @@
+<html>
+  <body>
+    <div id="app"></div>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+      const container = document.getElementById("app");
+      const root = ReactDOM.createRoot(container);
+
+      function MyHomePage() {
+        const [reset, setResets] = React.useState(0);
+
+        function Value({ nilai }) {
+          const isDisabled = reset === 10 || reset < 0;
+          return (
+            <button
+              onClick={nilai === "-" ? SetMinus : SetPlus}
+              disabled={isDisabled}
+            >
+              {nilai}
+            </button>
+          );
+        }
+
+        function SetReset() {
+          setResets(0);
+        }
+
+        function SetPlus() {
+          setResets(reset + 1);
+        }
+
+        function SetMinus() {
+          setResets(reset - 1);
+        }
+
+        function Reset() {
+          const isDisabled = !(reset === 10 || reset < 0);
+          return (
+            <button
+              onClick={SetReset}
+              disabled={isDisabled}
+              className="reset-button"
+            >
+              Reset
+            </button>
+          );
+        }
+
+        return (
+          <>
+            <Value nilai="-" />
+            <h1>{reset === 10 || reset < 0 ? "done!" : reset}</h1>
+            <Value nilai="+" />
+            <Reset />
+          </>
+        );
+      }
+
+      root.render(<MyHomePage />);
+    </script>
+  </body>
+</html>
